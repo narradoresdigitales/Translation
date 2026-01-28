@@ -15,6 +15,23 @@ st.set_page_config(
 st.title("📄 Word Document Translator")
 
 # -----------------------------
+# Language Options
+# -----------------------------
+LANGUAGES = {
+    "English": "english",
+    "Spanish": "spanish",
+    "French": "french",
+    "German": "german",
+    "Italian": "italian",
+    "Portuguese": "portuguese",
+    "Russian": "russian",
+    "Arabic": "arabic",
+    "Korean": "korean",
+    "Chinese (Simplified)": "chinese (simplified)",
+    "Chinese (Traditional)": "chinese (traditional)",
+}
+
+# -----------------------------
 # Helper Functions
 # -----------------------------
 def extract_docx_paragraphs(file):
@@ -43,10 +60,12 @@ def build_translated_docx(paragraphs):
 with st.sidebar:
     st.header("Settings")
 
-    target_language = st.selectbox(
+    language_label = st.selectbox(
         "Translate to:",
-        ["english", "spanish", "french", "german", "italian", "portuguese"]
+        list(LANGUAGES.keys())
     )
+
+    target_language = LANGUAGES[language_label]
 
     preview_count = st.slider(
         "Preview paragraphs",
